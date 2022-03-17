@@ -100,6 +100,18 @@ class OrnamentsController: NavigationComponent, NavigationComponentDelegate {
         }
     }
     
+    var showsMuteButton: Bool = true {
+        didSet {
+            navigationView.muteButton.isHidden = !showsMuteButton
+        }
+    }
+
+    var showsOverviewButton: Bool = true {
+        didSet {
+            navigationView.overviewButton.isHidden = !showsOverviewButton
+        }
+    }
+    
     var floatingButtonsPosition: MapOrnamentPosition? {
         get {
             return navigationView.floatingButtonsPosition

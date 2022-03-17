@@ -727,6 +727,12 @@ extension RouteController: Router {
             completion?(success)
         }
     }
+    
+    public func endNavigation() {
+        BillingHandler.shared.stopBillingSession(with: sessionUUID)
+        unsubscribeNotifications()
+        routeTask?.cancel()
+    }
 
     private func shouldStartNewBillingSession(for newRoute: Route, routeOptions: RouteOptions?) -> Bool {
         guard let routeOptions = routeOptions else {

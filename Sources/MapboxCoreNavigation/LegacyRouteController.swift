@@ -32,6 +32,8 @@ open class LegacyRouteController: NSObject, Router, InternalRouter, CLLocationMa
         routeProgress.route
     }
     
+    public func endNavigation() {}
+    
     public internal(set) var indexedRouteResponse: IndexedRouteResponse {
         didSet {
             if let routes = indexedRouteResponse.routeResponse.routes {
