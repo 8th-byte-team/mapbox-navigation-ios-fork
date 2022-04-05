@@ -179,19 +179,19 @@ public class ResumeButton: UIControl {
     }
     
     func commonInit() {
-        titleLabel.text = NSLocalizedString("RESUME", bundle: .mapboxNavigation, value: "Resume", comment: "Button title for resume tracking")
-        titleLabel.sizeToFit()
+       // titleLabel.text = NSLocalizedString("RESUME", bundle: .mapboxNavigation, value: "Resume", comment: "Button title for resume tracking")
+      //  titleLabel.sizeToFit()
         addSubview(imageView)
-        addSubview(titleLabel)
+     //   addSubview(titleLabel)
         
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+    //    titleLabel.translatesAutoresizingMaskIntoConstraints = false
         imageView.translatesAutoresizingMaskIntoConstraints = false
         translatesAutoresizingMaskIntoConstraints = false
         
-        let views = ["label": titleLabel, "imageView": imageView]
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-8-[imageView]-8-[label]-8-|", options: [], metrics: nil, views: views))
+        let views = [/*"label": titleLabel,*/ "imageView": imageView]
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-12-[imageView]-12-|", options: [], metrics: nil, views: views))
         addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|->=12-[imageView]->=12-|", options: [], metrics: nil, views: views))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|->=12-[label]->=12-|", options: [], metrics: nil, views: views))
+    //    addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|->=12-[label]->=12-|", options: [], metrics: nil, views: views))
         setNeedsUpdateConstraints()
         
         applyDefaultCornerRadiusShadow()
