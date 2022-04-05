@@ -232,7 +232,7 @@ open class BaseInstructionsBannerView: UIControl {
         let _separatorView = UIView()
         _separatorView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(_separatorView)
-        self._separatorView = _separatorVie
+        self._separatorView = _separatorViev
         self._separatorView.isHidden = true
         
         let separatorView = SeparatorView()
