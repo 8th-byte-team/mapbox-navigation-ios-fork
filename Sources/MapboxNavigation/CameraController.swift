@@ -113,7 +113,7 @@ class CameraController: NavigationComponent, NavigationComponentDelegate {
             navigationViewData.navigationView.overviewButton.isHidden = false
             navigationViewData.navigationView.resumeButton.isHidden = true
             if let _ = navigationViewData.navigationView.wayNameView.text?.nonEmptyString {
-                navigationViewData.navigationView.wayNameView.containerView.isHidden = false
+                navigationViewData.navigationView.wayNameView.containerView.isHidden = true
             }
             break
         case .idle, .transitionToOverview, .overview:

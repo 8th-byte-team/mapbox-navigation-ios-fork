@@ -214,6 +214,7 @@ open class NavigationView: UIView {
         DayStyle().apply()
         [navigationMapView, topBannerContainerView, bottomBannerContainerView].forEach({ $0.prepareForInterfaceBuilder() })
         wayNameView.text = "Street Label"
+        wayNameView.isHidden = true
     }
 }
 

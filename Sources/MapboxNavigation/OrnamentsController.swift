@@ -191,7 +191,7 @@ class OrnamentsController: NavigationComponent, NavigationComponentDelegate {
         
         if let roadName = roadName {
             navigationView.wayNameView.text = roadName.nonEmptyString
-            navigationView.wayNameView.containerView.isHidden = roadName.isEmpty
+            navigationView.wayNameView.containerView.isHidden = true //roadName.isEmpty
             
             return
         }

@@ -161,7 +161,7 @@ extension NavigationMapView {
                         hideWayName = false
                     }
                 }
-                wayNameView.containerView.isHidden = hideWayName
+                wayNameView.containerView.isHidden = true //hideWayName
                 
             case .failure:
                 NSLog("Failed to find visible features.")
