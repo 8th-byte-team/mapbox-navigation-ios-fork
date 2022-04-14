@@ -632,7 +632,8 @@ extension RouteController: Router {
         }
         
         // If we still wait for the first status from NavNative, there is no need to reroute
-        guard let status = status ?? Navigator.shared.mostRecentNavigationStatus else { return true }
+        // dirty fix
+        guard let status = status ?? Navigator.shared.mostRecentNavigationStatus else { return false }
 
         /// NavNative doesn't support reroutes after arrival.
         /// The code below is a port of logic from LegacyRouteController
