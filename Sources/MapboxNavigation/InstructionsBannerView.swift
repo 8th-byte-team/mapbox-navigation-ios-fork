@@ -320,7 +320,7 @@ open class BaseInstructionsBannerView: UIControl {
     
     // Aligns the instruction to the center Y (used for single line primary and/or secondary instructions)
     func centerYAlignInstructions() {
-        _separatorView.isHidden = false
+        _separatorView.isHidden = true
         baselineConstraints.forEach { $0.isActive = false }
         centerYConstraints.forEach { $0.isActive = true }
     }
