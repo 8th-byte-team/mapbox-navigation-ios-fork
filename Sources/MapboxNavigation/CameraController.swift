@@ -25,6 +25,8 @@ class CameraController: NavigationComponent, NavigationComponentDelegate {
         return navigationViewData.navigationView.bottomBannerContainerView
     }
     
+    private var userLocation: CLLocation?
+    
     // MARK: Methods
     
     init(_ navigationViewData: NavigationViewData) {
@@ -61,7 +63,7 @@ class CameraController: NavigationComponent, NavigationComponentDelegate {
     }
     
     func recenter(_ sender: AnyObject, completion: ((CameraController, CLLocation) -> ())?) {
-        guard let location = navigationMapView.mostRecentUserCourseViewLocation else { return }
+        guard let location = userLocation else { return }
 
         navigationMapView.moveUserLocation(to: location)
         completion?(self, location)
@@ -143,6 +145,7 @@ class CameraController: NavigationComponent, NavigationComponentDelegate {
     // MARK: NavigationComponent Implementation
     
     func navigationService(_ service: NavigationService, didUpdate progress: RouteProgress, with location: CLLocation, rawLocation: CLLocation) {
+        userLocation = rawLocation
         updateNavigationCameraViewport()
     }
     
