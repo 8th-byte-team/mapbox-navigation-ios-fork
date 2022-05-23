@@ -67,6 +67,10 @@ open class NavigationRouteOptions: RouteOptions, OptimizedForNavigation {
     required public init(from decoder: Decoder) throws {
         try super.init(from: decoder)
     }
+    
+    required public init(waypoints: [Waypoint], profileIdentifier: ProfileIdentifier? = nil, queryItems: [URLQueryItem]? = nil) {
+        fatalError("init(waypoints:profileIdentifier:queryItems:) has not been implemented")
+    }
 }
 
 /**
@@ -116,6 +120,10 @@ open class NavigationMatchOptions: MatchOptions, OptimizedForNavigation {
     
     required public init(from decoder: Decoder) throws {
         try super.init(from: decoder)
+    }
+    
+    required public init(waypoints: [Waypoint], profileIdentifier: ProfileIdentifier? = nil, queryItems: [URLQueryItem]? = nil) {
+        fatalError("init(waypoints:profileIdentifier:queryItems:) has not been implemented")
     }
 }
 
