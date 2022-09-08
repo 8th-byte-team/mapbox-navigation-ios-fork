@@ -35,7 +35,8 @@ open class PassiveLocationManager: NSObject {
      - seeAlso: rawLocation
      */
     public var location: CLLocation? {
-        return snappedLocation ?? rawLocation
+        return rawLocation
+        //return snappedLocation ?? rawLocation
     }
     
     /**

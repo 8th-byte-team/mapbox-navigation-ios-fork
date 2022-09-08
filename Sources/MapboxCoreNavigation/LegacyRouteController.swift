@@ -62,7 +62,8 @@ open class LegacyRouteController: NSObject, Router, InternalRouter, CLLocationMa
             return CLLocation(coordinate: loc.coordinate, altitude: loc.altitude, horizontalAccuracy: loc.horizontalAccuracy, verticalAccuracy: loc.verticalAccuracy, course: heading.trueHeading, speed: loc.speed, timestamp: loc.timestamp)
         }
 
-        return snappedLocation ?? rawLocation
+        return rawLocation
+       // return snappedLocation ?? rawLocation
     }
 
     /**
