@@ -84,7 +84,8 @@ open class RouteController: NSObject {
      - seeAlso: snappedLocation, rawLocation
      */
     public var location: CLLocation? {
-        return snappedLocation ?? rawLocation
+        return rawLocation
+       // return snappedLocation ?? rawLocation
     }
     
     /**
