@@ -292,7 +292,7 @@ open class CarPlayMapViewController: UIViewController {
         
         if let roadName = notification.userInfo?[PassiveLocationManager.NotificationUserInfoKey.roadNameKey] as? String {
             wayNameView.text = roadName.nonEmptyString
-            wayNameView.containerView.isHidden = roadName.isEmpty
+            wayNameView.containerView.isHidden = true // roadName.isEmpty
         } else {
             wayNameView.containerView.isHidden = true
         }

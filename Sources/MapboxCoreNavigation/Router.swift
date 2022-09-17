@@ -167,6 +167,9 @@ public protocol Router: CLLocationManagerDelegate {
     func updateRoute(with indexedRouteResponse: IndexedRouteResponse,
                      routeOptions: RouteOptions?,
                      completion: ((Bool) -> Void)?)
+    
+    // end navigation
+    func endNavigation()
 }
 
 protocol InternalRouter: AnyObject {

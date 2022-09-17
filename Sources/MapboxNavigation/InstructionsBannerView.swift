@@ -201,8 +201,6 @@ open class BaseInstructionsBannerView: UIControl {
         
         let distanceLabel = DistanceLabel()
         distanceLabel.translatesAutoresizingMaskIntoConstraints = false
-        distanceLabel.adjustsFontSizeToFitWidth = true
-        distanceLabel.minimumScaleFactor = 16.0 / 22.0
         addSubview(distanceLabel)
         self.distanceLabel = distanceLabel
         
@@ -210,9 +208,7 @@ open class BaseInstructionsBannerView: UIControl {
         primaryLabel.instructionDelegate = delegate
         primaryLabel.translatesAutoresizingMaskIntoConstraints = false
         primaryLabel.allowsDefaultTighteningForTruncation = true
-        primaryLabel.adjustsFontSizeToFitWidth = true
-        primaryLabel.numberOfLines = 1
-        primaryLabel.minimumScaleFactor = 20.0 / 30.0
+        primaryLabel.numberOfLines = 2
         primaryLabel.lineBreakMode = .byTruncatingTail
         addSubview(primaryLabel)
         self.primaryLabel = primaryLabel
@@ -222,30 +218,34 @@ open class BaseInstructionsBannerView: UIControl {
         secondaryLabel.translatesAutoresizingMaskIntoConstraints = false
         secondaryLabel.allowsDefaultTighteningForTruncation = true
         secondaryLabel.numberOfLines = 1
-        secondaryLabel.minimumScaleFactor = 20.0 / 26.0
         secondaryLabel.lineBreakMode = .byTruncatingTail
         addSubview(secondaryLabel)
         self.secondaryLabel = secondaryLabel
         
         let dividerView = UIView()
+        dividerView.isHidden = true
         dividerView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(dividerView)
         self.dividerView = dividerView
+        self.dividerView.isHidden = true
         
         let _separatorView = UIView()
         _separatorView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(_separatorView)
         self._separatorView = _separatorView
+        self._separatorView.isHidden = true
         
         let separatorView = SeparatorView()
         separatorView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(separatorView)
         self.separatorView = separatorView
+        self.separatorView.isHidden = true
         
         let stepListIndicatorView = StepListIndicatorView()
         stepListIndicatorView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stepListIndicatorView)
         self.stepListIndicatorView = stepListIndicatorView
+        self.stepListIndicatorView.isHidden = true
         
         addTarget(self, action: #selector(BaseInstructionsBannerView.tappedInstructionsBanner(_:)), for: .touchUpInside)
 
@@ -266,12 +266,16 @@ open class BaseInstructionsBannerView: UIControl {
         // firstColumnWidth is the width of the left side of the banner containing the maneuver view and distance label
         let firstColumnWidth = BaseInstructionsBannerView.maneuverViewSize.width + BaseInstructionsBannerView.padding * 3
         
-        // Distance label
-        distanceLabel.leadingAnchor.constraint(greaterThanOrEqualTo: leadingAnchor, constant: BaseInstructionsBannerView.padding / 2).isActive = true
-        distanceLabel.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: -BaseInstructionsBannerView.padding / 2).isActive = true
-        distanceLabel.centerXAnchor.constraint(equalTo: maneuverView.centerXAnchor, constant: 0).isActive = true
-        distanceLabel.lastBaselineAnchor.constraint(equalTo: bottomAnchor, constant: -BaseInstructionsBannerView.padding).isActive = true
-        distanceLabel.topAnchor.constraint(greaterThanOrEqualTo: maneuverView.bottomAnchor).isActive = true
+        distanceLabel.leadingAnchor.constraint(equalTo: dividerView.trailingAnchor).isActive = true
+        distanceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
+        baselineConstraints.append(distanceLabel.topAnchor.constraint(equalTo: maneuverView.topAnchor, constant: -BaseInstructionsBannerView.padding/2))
+        centerYConstraints.append(distanceLabel.centerYAnchor.constraint(equalTo: maneuverView.centerYAnchor))
+
+        primaryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15).isActive = true
+        primaryLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
+        primaryLabel.centerXAnchor.constraint(equalTo: maneuverView.centerXAnchor, constant: 0).isActive = true
+        primaryLabel.lastBaselineAnchor.constraint(equalTo: bottomAnchor, constant: -BaseInstructionsBannerView.padding).isActive = true
+        primaryLabel.topAnchor.constraint(greaterThanOrEqualTo: maneuverView.bottomAnchor).isActive = true
         
         // Turn arrow view
         maneuverView.heightAnchor.constraint(equalToConstant: BaseInstructionsBannerView.maneuverViewSize.height).isActive = true
@@ -279,15 +283,10 @@ open class BaseInstructionsBannerView: UIControl {
         maneuverView.topAnchor.constraint(equalTo: topAnchor, constant: BaseInstructionsBannerView.padding).isActive = true
         maneuverView.centerXAnchor.constraint(equalTo: leadingAnchor, constant: firstColumnWidth / 2).isActive = true
         
-        // Primary Label
-        primaryLabel.leadingAnchor.constraint(equalTo: dividerView.trailingAnchor).isActive = true
-        primaryLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18).isActive = true
-        baselineConstraints.append(primaryLabel.topAnchor.constraint(equalTo: maneuverView.topAnchor, constant: -BaseInstructionsBannerView.padding/2))
-        centerYConstraints.append(primaryLabel.centerYAnchor.constraint(equalTo: centerYAnchor))
-        
+
         // Secondary Label
         secondaryLabel.leadingAnchor.constraint(equalTo: dividerView.trailingAnchor).isActive = true
-        secondaryLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -18).isActive = true
+        secondaryLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15).isActive = true
         baselineConstraints.append(secondaryLabel.lastBaselineAnchor.constraint(equalTo: distanceLabel.lastBaselineAnchor, constant: -BaseInstructionsBannerView.padding / 2))
         baselineConstraints.append(secondaryLabel.topAnchor.constraint(greaterThanOrEqualTo: primaryLabel.bottomAnchor, constant: 0))
         centerYConstraints.append(secondaryLabel.topAnchor.constraint(greaterThanOrEqualTo: primaryLabel.bottomAnchor, constant: 0))
@@ -321,7 +320,7 @@ open class BaseInstructionsBannerView: UIControl {
     
     // Aligns the instruction to the center Y (used for single line primary and/or secondary instructions)
     func centerYAlignInstructions() {
-        _separatorView.isHidden = false
+        _separatorView.isHidden = true
         baselineConstraints.forEach { $0.isActive = false }
         centerYConstraints.forEach { $0.isActive = true }
     }

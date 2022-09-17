@@ -476,6 +476,24 @@ open class NavigationViewController: UIViewController, NavigationStatusPresenter
         }
     }
     
+    public var showsOverviewButton: Bool {
+        get {
+            ornamentsController?.showsOverviewButton ?? false
+        }
+        set {
+            ornamentsController?.showsOverviewButton = newValue
+        }
+    }
+
+    public var showsMuteButton: Bool {
+        get {
+            ornamentsController?.showsMuteButton ?? false
+        }
+        set {
+            ornamentsController?.showsMuteButton = newValue
+        }
+    }
+    
     /**
      Shows End of route Feedback UI when the route controller arrives at the final destination.
      

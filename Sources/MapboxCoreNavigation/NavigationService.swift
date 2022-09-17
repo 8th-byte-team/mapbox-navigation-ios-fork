@@ -603,7 +603,7 @@ extension MapboxNavigationService: RouterDelegate {
         
         let shouldAutomaticallyAdvance =  delegate?.navigationService(self, didArriveAt: waypoint) ?? Default.didArriveAtWaypoint
         if !shouldAutomaticallyAdvance {
-            stop()
+           // stop()
         }
         return shouldAutomaticallyAdvance
     }

@@ -100,6 +100,18 @@ class OrnamentsController: NavigationComponent, NavigationComponentDelegate {
         }
     }
     
+    var showsMuteButton: Bool = true {
+        didSet {
+            navigationView.muteButton.isHidden = !showsMuteButton
+        }
+    }
+
+    var showsOverviewButton: Bool = true {
+        didSet {
+            navigationView.overviewButton.isHidden = !showsOverviewButton
+        }
+    }
+    
     var floatingButtonsPosition: MapOrnamentPosition? {
         get {
             return navigationView.floatingButtonsPosition
@@ -179,7 +191,7 @@ class OrnamentsController: NavigationComponent, NavigationComponentDelegate {
         
         if let roadName = roadName {
             navigationView.wayNameView.text = roadName.nonEmptyString
-            navigationView.wayNameView.containerView.isHidden = roadName.isEmpty
+            navigationView.wayNameView.containerView.isHidden = true //roadName.isEmpty
             
             return
         }

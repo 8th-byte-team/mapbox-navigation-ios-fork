@@ -32,6 +32,8 @@ open class LegacyRouteController: NSObject, Router, InternalRouter, CLLocationMa
         routeProgress.route
     }
     
+    public func endNavigation() {}
+    
     public internal(set) var indexedRouteResponse: IndexedRouteResponse {
         didSet {
             if let routes = indexedRouteResponse.routeResponse.routes {
@@ -60,7 +62,8 @@ open class LegacyRouteController: NSObject, Router, InternalRouter, CLLocationMa
             return CLLocation(coordinate: loc.coordinate, altitude: loc.altitude, horizontalAccuracy: loc.horizontalAccuracy, verticalAccuracy: loc.verticalAccuracy, course: heading.trueHeading, speed: loc.speed, timestamp: loc.timestamp)
         }
 
-        return snappedLocation ?? rawLocation
+        return rawLocation
+       // return snappedLocation ?? rawLocation
     }
 
     /**

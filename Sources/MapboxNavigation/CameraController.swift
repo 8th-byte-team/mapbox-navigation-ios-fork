@@ -25,6 +25,8 @@ class CameraController: NavigationComponent, NavigationComponentDelegate {
         return navigationViewData.navigationView.bottomBannerContainerView
     }
     
+    private var userLocation: CLLocation?
+    
     // MARK: Methods
     
     init(_ navigationViewData: NavigationViewData) {
@@ -61,7 +63,7 @@ class CameraController: NavigationComponent, NavigationComponentDelegate {
     }
     
     func recenter(_ sender: AnyObject, completion: ((CameraController, CLLocation) -> ())?) {
-        guard let location = navigationMapView.mostRecentUserCourseViewLocation else { return }
+        guard let location = userLocation else { return }
 
         navigationMapView.moveUserLocation(to: location)
         completion?(self, location)
@@ -110,10 +112,10 @@ class CameraController: NavigationComponent, NavigationComponentDelegate {
         
         switch navigationCameraState {
         case .transitionToFollowing, .following:
-            navigationViewData.navigationView.overviewButton.isHidden = false
+            navigationViewData.navigationView.overviewButton.isHidden = true
             navigationViewData.navigationView.resumeButton.isHidden = true
             if let _ = navigationViewData.navigationView.wayNameView.text?.nonEmptyString {
-                navigationViewData.navigationView.wayNameView.containerView.isHidden = false
+                navigationViewData.navigationView.wayNameView.containerView.isHidden = true
             }
             break
         case .idle, .transitionToOverview, .overview:
@@ -143,6 +145,7 @@ class CameraController: NavigationComponent, NavigationComponentDelegate {
     // MARK: NavigationComponent Implementation
     
     func navigationService(_ service: NavigationService, didUpdate progress: RouteProgress, with location: CLLocation, rawLocation: CLLocation) {
+        userLocation = rawLocation
         updateNavigationCameraViewport()
     }
     

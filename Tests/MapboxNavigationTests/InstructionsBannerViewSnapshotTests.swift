@@ -387,7 +387,7 @@ extension InstructionsBannerViewSnapshotTests {
 
         view.distanceLabel.valueFont = UIFont.systemFont(ofSize: 24)
         view.distanceLabel.unitFont = UIFont.systemFont(ofSize: 14)
-        view.primaryLabel.font = UIFont.systemFont(ofSize: 30, weight: .medium)
+        view.primaryLabel.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         view.secondaryLabel.font = UIFont.systemFont(ofSize: 26, weight: .medium)
     }
 }
