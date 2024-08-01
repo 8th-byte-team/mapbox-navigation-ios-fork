@@ -226,7 +226,7 @@ extension NavigationMapView {
         pendingCoordinateForRouteLine = coordinate
     }
     
-    func setLayerLineGradient(for layerId: String, exp: Expression) {
+    func setLayerLineGradient(for layerId: String, exp: MapboxMaps.Expression) {
         if let data = try? JSONEncoder().encode(exp.self),
            let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []) {
             do {
