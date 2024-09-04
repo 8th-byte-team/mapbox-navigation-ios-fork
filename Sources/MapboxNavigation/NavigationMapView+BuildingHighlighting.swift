@@ -79,7 +79,7 @@ extension NavigationMapView {
             highlightedBuildingsLayer.source = "composite"
             highlightedBuildingsLayer.sourceLayer = "building"
             
-            let extrudeExpression: MapboxMap.Expression = Exp(.eq) {
+            let extrudeExpression: MapboxMaps.Expression = Exp(.eq) {
                 Exp(.get) {
                     "extrude"
                 }
